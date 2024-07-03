@@ -7,7 +7,7 @@ app.use(cors())
 app.use(express.json())
 
 const {MongoClient}=require('mongodb')
-const baseurl="mongodb://localhost:27017/Quiz";
+const baseurl="mongodb+srv://Pushkar_15:Pushkar%404515@quiz.5t0an4j.mongodb.net/student";
 
 app.listen(4500,(req,res)=>{
     console.log("server Running...")
@@ -24,8 +24,8 @@ app.get('/data',async(req,res)=>{
     //console.log(client)
     try{
         await client.connect()
-        const database=client.db('Quiz')
-        const question=database.collection('StudentData')
+        const database=client.db('student')
+        const question=database.collection('data')
         const readdata= await question.find().toArray()
         res.send(readdata)
     }
@@ -38,8 +38,8 @@ app.get('/question',async(req,res)=>{
     //console.log(client)
     try{
         await client.connect()
-        const database=client.db('Quiz')
-        const question=database.collection('Questions')
+        const database=client.db('student')
+        const question=database.collection('question')
         const readdata= await question.find().toArray()
         res.send(readdata)
     }
@@ -54,8 +54,8 @@ app.post('/add',async(req,res)=>{
     console.log("data added")
     try{
         await client.connect()
-        const database=client.db('Quiz')
-        const student=database.collection('StudentData')
+        const database=client.db('student')
+        const student=database.collection('data')
         const addata= await student.insertOne(req.body)
         res.send(addata)
     }
