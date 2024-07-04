@@ -7,7 +7,7 @@ app.use(cors())
 app.use(express.json())
 
 const {MongoClient}=require('mongodb')
-const baseurl="mongodb+srv://Pushkar_15:Pushkar%404515@quiz.5t0an4j.mongodb.net/student";
+const baseurl="mongodb+srv://Pushkar_15:Pushkar4515@quiz.5t0an4j.mongodb.net/?retryWrites=true&w=majority&appName=quiz";
 
 app.listen(4500,(req,res)=>{
     console.log("server Running...")
@@ -58,20 +58,6 @@ app.post('/add',async(req,res)=>{
         const student=database.collection('data')
         const addata= await student.insertOne(req.body)
         res.send(addata)
-    }
-    finally{
-        await client.close()
-    }
-})
-app.get('/dataone',async(req,res)=>{
-    const client= new MongoClient(baseurl)
-    //console.log(client)
-    try{
-        await client.connect()
-        const database=client.db('Quiz')
-        const question=database.collection('StudentData')
-        const readdata= await question.findOne(req.body)
-        res.send(readdata)
     }
     finally{
         await client.close()
