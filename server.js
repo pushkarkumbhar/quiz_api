@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express= require('express')
 const mongoose=require('mongoose')
 const cors=require('cors')
@@ -6,11 +7,16 @@ const app=express()
 app.use(cors())
 app.use(express.json())
 
+const host=process.env.host
+const port=process.env.port
+
 const {MongoClient}=require('mongodb')
 const baseurl="mongodb+srv://Pushkar_15:Pushkar4515@quiz.5t0an4j.mongodb.net/?retryWrites=true&w=majority&appName=quiz";
+//mongodb+srv://Pushkar_15:Pushkar4515@quiz.5t0an4j.mongodb.net/?retryWrites=true&w=majority&appName=quiz
 
-app.listen(10000,(req,res)=>{
-    console.log("server Running...")
+app.listen(port,(req,res)=>{
+    console.log(`server started `)
+
 })
 app.get('',(req,res)=>{
     res.send("<h1>Server Started... </h1>")
@@ -54,7 +60,7 @@ app.post('/add',async(req,res)=>{
     console.log("data added")
     try{
         await client.connect()
-        const database=client.db('student')
+        const database=client.db('quiz')
         const student=database.collection('data')
         const addata= await student.insertOne(req.body)
         res.send(addata)
