@@ -9,7 +9,7 @@ app.use(express.json())
 const {MongoClient}=require('mongodb')
 const baseurl="mongodb+srv://Pushkar_15:Pushkar4515@quiz.5t0an4j.mongodb.net/?retryWrites=true&w=majority&appName=quiz";
 
-app.listen(4500,(req,res)=>{
+app.listen(10000,(req,res)=>{
     console.log("server Running...")
 })
 app.get('',(req,res)=>{
